@@ -21,7 +21,7 @@ print(suma)
 <p>Una Gran bola de lodo es una selva de código enrevesado, chapucero, caóticamente estructurado, que crece descontroladamente, que se mantiene como unido a base de cuerda y cinta aislante. Este tipo de sistemas presentan signos inconfundibles de crecimiento incontrolado y constantes necesidades de reparación. Elementos lejanos en el sistema comparten información profusamente, incluso hasta el punto de que prácticamente cualquier información importante se trata de manera global o se duplica. La estructura global del sistema puede no haber llegado a estar claramente definida nunca. Si alguna vez lo estuvo, es probable que se haya deteriorado hasta el punto de ser imposible reconocerla. (Brian Foote y Joseph Yoder, 1999)</p>
 
 
-Referencias Bibliográficas:
+<h3>Referencias Bibliográficas</h3>
 <br>
 https://exceptionnotfound.net/big-ball-of-mud-the-daily-software-anti-pattern/
 <br>
