@@ -22,6 +22,9 @@ print(suma)
 
 
 Referencias Bibliográficas:
+<br>
 https://exceptionnotfound.net/big-ball-of-mud-the-daily-software-anti-pattern/
+<br>
+https://es.wikipedia.org/wiki/Antipatr%C3%B3n_de_dise%C3%B1o#Algunos_antipatrones_de_desarrollo_de_software
 
 
