@@ -20,6 +20,248 @@ print(suma)
 
 <p>Una Gran bola de lodo es una selva de código enrevesado, chapucero, caóticamente estructurado, que crece descontroladamente, que se mantiene como unido a base de cuerda y cinta aislante. Este tipo de sistemas presentan signos inconfundibles de crecimiento incontrolado y constantes necesidades de reparación. Elementos lejanos en el sistema comparten información profusamente, incluso hasta el punto de que prácticamente cualquier información importante se trata de manera global o se duplica. La estructura global del sistema puede no haber llegado a estar claramente definida nunca. Si alguna vez lo estuvo, es probable que se haya deteriorado hasta el punto de ser imposible reconocerla. (Brian Foote y Joseph Yoder, 1999)</p>
 
+``` [python]
+# -*- coding: utf-8 -*-
+"""
+
+
+"""
+from random import randint
+from tkinter import *
+from tkinter import messagebox
+import tkinter.font
+import tkinter as tk
+import os.path
+import os.path as path
+
+
+#from PIL import Image, ImageDraw
+#from PIL import Image, ImageDraw, ImageFont
+import pickle
+
+
+#peta = []
+#
+#mu=""
+#while mu != '9':
+#    
+#    impares = randint(0,9)
+#    num = len(str(impares))
+#    
+#    mu = str(impares)
+##    print(impares,"-",num)
+#    while num < 0:
+#        mu = "0"+mu
+#        num=len(mu)
+#        
+#    print("Mu  ",mu)
+#    peta += mu
+#
+#print(peta)
+
+
+marco = tk.Tk()
+marco.title("Loteria")
+marco.geometry("400x300")
+marco.configure(background = "#ABCDEF")
+
+                #Label para el titulo
+Title = Label(marco, text="Loteria")
+Title.pack(anchor=CENTER)
+Title.config(background="#ABCDEF",
+        font=("Verdena",24))
+            
+#obagr=agregar()
+#obbus=buscar()
+#oblis=Listard()
+#obelim=elim()
+#obmod=modi()
+    #botones 
+    
+def jugar():
+    todo = pcod.get()
+    jug = []
+    flag = 0
+    lots = todo.split(" ")
+    
+#    print(lots)
+    for p in lots:
+#        print (p)
+        jug += p.split("-")
+        print(jug)
+#        print(len(jug))
+        
+    laves=len(jug)
+    
+    o=0
+    while o < laves-1:
+        ser=int(jug[o+1])
+        if ser > 400:
+            messagebox.showinfo('Loteria','El numero de serie debe ser menor de 400')
+            flag=flag+1
+        o=o + 2
+        
+    x = 0
+    while x < laves-1:
+        nj=int(jug[x])
+        if nj > 9999:
+            messagebox.showinfo('Loteria','El numero a jugar debe ser maximo de 4 cifras')
+            flag=flag+1
+        x = x + 2
+    datos = ['']
+    if flag == 0:
+        band = 0
+        cont = 0
+        serie = ['']
+        numero = [' ']
+        while band < 2:
+            alea1=randint(0,9999)
+            alea2=randint(0,400)
+            
+            num = len(str(alea1))
+            
+            nume = str(alea1)
+#            print(alea2)
+            nel = str(alea2)
+            serie.append(nel)
+#            print(serie)
+            
+#            print(alea1,"-",nume)
+            
+            while num < 4:
+                nume = "0"+nume
+                num=len(nume)
+            numero.append(nume)
+            
+            if jug[0]=="2604" and jug[1]=="307":
+                
+                if cont == 1734:
+                    nume = "2604"
+                    alea2=307
+            
+            
+            
+            n=0
+            while n < laves-1:
+#                print (jug[n]+"-",nume)
+#                print (nume)
+                if nume == jug[n]:
+#                    print ("chupala")
+#                    print (nume)
+                    band = band + 1
+                    break
+                n = n + 2
+            k=0
+            while k < laves-1:
+#                print (jug[k + 1]+"---"+str(alea2))
+#                print (alea2)
+                if alea2 == int(jug[k + 1]):
+#                    print("vuelvela a chupar")
+#                    print (alea2)
+                    band = band + 1
+                    break
+                k = k + 2
+            if band==1:
+                band=0
+                
+            if band == 2:
+                Tpco.config(text=("ganó con el número: "+nume+"-"+str(alea2)))
+                Tpcode.config(text=(str(cont)))
+                datos.append(nume+"-"+str(alea2)+"  Numero de intentos: "+str(cont))
+                
+            cont=cont+1
+            
+#            print(nume+"-"+str(alea2))
+            
+#            print(datos)
+#            if (cont % 100)==0: 
+#                print("-----------------------------------------------------------------")
+                
+            if cont > 6000000:
+                break
+            
+            
+    
+        z = 0
+#        print (serie)
+        
+        
+    print (datos)
+    if path.exists("resultados.txt"):
+        f = open("resultados.txt", "rb")
+        ads = pickle.load(f)
+        ads += datos
+        
+        with open("resultados.txt", "wb") as g:
+            pickle.dump(ads,g)
+
+    else:
+        
+        with open("resultados.txt", "wb") as f:
+            pickle.dump(datos,f)
+    
+def consultar():
+    tbl1=tk.Tk()
+    tbl1.geometry("400x600")
+    tbl1.title("Agregar vuelo")
+    tbl1.configure(background = "#ABCDEF")
+                   
+    Tagr = Label(tbl1, text="Resultados")
+    Tagr.pack(anchor=CENTER)
+    Tagr.config(background="#ABCDEF", font=("Verdena",15))
+                    
+                
+    f = open("resultados.txt", "rb")
+    datos = pickle.load(f)
+    f.close
+                
+                
+    r = Text(tbl1,width=40,height=30)
+#    r.insert(INSERT,"id_Vuelo\t\tNombre Aerolinea\t\tPais de Origen\t\tPais de Destino\t\tHora del Vuelo\t\tFecha del Vuelo\t\tCosto del Vuelo")
+    for d in datos:
+            r.insert(INSERT,d)
+            r.insert(INSERT,"\n")
+    r.config(state=DISABLED)
+    r.pack()
+    r.place(x=30,y=40)
+    
+                   
+
+    btnSa = Button(tbl1, text = "Salir", command = tbl1.destroy)
+    btnSa.pack()
+    btnSa.place(x = 900, y = 490)
+    
+pcod = tk.Entry(width = 50)
+pcod.pack(anchor=CENTER)
+pcod.place(x = 45, y = 70)
+
+btnbor = Button(marco, text = "Jugar", command = jugar)
+btnbor.pack()
+btnbor.place(x = 200, y = 130)
+
+btnmod = Button(marco, text = "Salir", command = marco.destroy)
+btnmod.pack()
+btnmod.place(x = 290, y = 130)
+
+btnmo = Button(marco, text = "Mostrar resultados", command = consultar)
+btnmo.pack()
+btnmo.place(x = 290, y = 240)
+
+
+Tpcode = Label(text="0")
+Tpcode.pack()
+Tpcode.place(x = 100, y = 100)
+Tpcode.config(background="#ABCDEF", font=("Verdena", 11))
+
+Tpco = Label(text="Jugando")
+Tpco.pack()
+Tpco.place(x = 100, y = 200)
+Tpco.config(background="#ABCDEF", font=("Verdena", 11))
+
+mainloop()
+
+```
+
 ## Spaghetti code
  Este antipatron hace referencia a que un programa tiene una estructura de control de flujo conmpleja e incomprensible. Su nombre deriva del hecho que este tipo de código parece asemejarse a un plato de espaguetis, es decir, un montón de hilos intrincados y anudados.
  El 50% del tiempo de mantenimiento se invierte en entender el sistema original, el rehuso es imposible.
